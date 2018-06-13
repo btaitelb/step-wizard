@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { Button } from "antd"
-import "./App.css"
 import "./Step.css"
 
 class Step extends Component {
@@ -29,7 +28,7 @@ class Step extends Component {
     const { curStep, totalSteps, showConfig } = this.state
 
     return (
-      <div className="app-container">
+      <div className="component-container">
         <div className="title-controls">
           <div className="step-title">
             Wizard Running: Step {curStep} / {totalSteps}

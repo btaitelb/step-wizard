@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { Button, Input, notification } from "antd"
-import "./App.css"
 import "./ConfDialog.css"
 
 class ConfDialog extends Component {
@@ -29,7 +28,7 @@ class ConfDialog extends Component {
     const { totalSteps } = this.state
 
     return (
-      <div className="app-container">
+      <div className="component-container">
         <div className="page-title">Setup Wizard</div>
 
         <div className="form-layout">

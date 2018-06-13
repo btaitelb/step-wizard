@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import ConfDialog from "./ConfDialog"
-import Step from "./Step"
+import ConfDialog from "./components/ConfDialog"
+import Step from "./components/Step"
 
 class App extends Component {
   constructor(props) {
