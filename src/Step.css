@@ -1,0 +1,33 @@
+.title-controls {
+  padding-left: 120px;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-title {
+  font-size: 36px;
+}
+
+.reset-button {
+  margin-right: 120px;
+}
+
+.step-content {
+  position: relative;
+  padding-left: 120px;
+  margin-top: 120px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container {
+  display: flex;
+  position: absolute;
+  top: 400px;
+}

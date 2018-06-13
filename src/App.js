@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import "./App.css"
 import ConfDialog from "./ConfDialog"
 import Step from "./Step"
 
@@ -14,24 +13,19 @@ class App extends Component {
   }
 
   updateTotalSteps(steps) {
-    this.setState({totalSteps: steps, isShowingConfig: false});
+    this.setState({ totalSteps: steps, isShowingConfig: false })
   }
 
   showConfig() {
-    this.setState({totalSteps: "", isShowingConfig: true});
+    this.setState({ totalSteps: "", isShowingConfig: true })
   }
 
   render() {
-    if (this.state.isShowingConfig) {
-      return (
-        <ConfDialog updateTotalSteps={this.updateTotalSteps.bind(this)} />
-      );
+    const { isShowingConfig, curStep, totalSteps } = this.state
+    if (isShowingConfig) {
+      return <ConfDialog updateTotalSteps={this.updateTotalSteps.bind(this)} />
     } else {
-      return (
-        <Step curStep={this.state.curStep}
-              totalSteps={this.state.totalSteps}
-              showConfig={this.showConfig.bind(this)} />
-      );
+      return <Step curStep={curStep} totalSteps={totalSteps} showConfig={this.showConfig.bind(this)} />
     }
   }
 }

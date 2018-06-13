@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import "./App.css"
 import { Button } from "antd"
+import "./App.css"
+import "./Step.css"
 
 class Step extends Component {
   constructor(props) {
@@ -13,60 +14,60 @@ class Step extends Component {
   }
 
   updateStep(step) {
-      this.setState({curStep: step});
+    this.setState({ curStep: step })
   }
 
   nextStep() {
-      this.updateStep(this.state.curStep + 1);
+    this.updateStep(this.state.curStep + 1)
   }
 
   prevStep() {
-      this.updateStep(this.state.curStep - 1);
+    this.updateStep(this.state.curStep - 1)
   }
 
   render() {
-    const {curStep, totalSteps, showConfig} = this.state;
+    const { curStep, totalSteps, showConfig } = this.state
 
     return (
-        <div className="app-container">
+      <div className="app-container">
         <div className="title-controls">
-            <div style={{ fontSize: 36 }}>
-                Wizard Running: Step {curStep} / {totalSteps}
-            </div>
-            <Button
-                type="primary"
-                style={{ marginRight: 120 }}
-                onClick={() => showConfig()}
-            >
+          <div className="step-title">
+            Wizard Running: Step {curStep} / {totalSteps}
+          </div>
+          <Button type="primary" className="reset-button" onClick={() => showConfig()}>
             Back to Beginning
-            </Button>
+          </Button>
         </div>
 
-        <div style={{ paddingLeft: 120, marginTop: 120, position: "relative" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="step-content">
+          <div className="image-container">
             <img alt="placeholder" src={`http://via.placeholder.com/${curStep * 16}x${curStep * 9}`} />
-            </div>
+          </div>
 
-            <div style={{ display: "flex", position: "absolute", top: 400 }}>
+          <div className="buttons-container">
             <Button
-                type="primary"
-                disabled={curStep === 1}
-                onClick={() => { this.prevStep(); }}
+              type="primary"
+              disabled={curStep === 1}
+              onClick={() => {
+                this.prevStep()
+              }}
             >
-                {" "}
-                &lt; Back
+              {" "}
+              &lt; Back
             </Button>
             <Button
-                style={{ marginLeft: 12 }}
-                type="primary"
-                disabled={curStep === totalSteps}
-                onClick={() => { this.nextStep() }}
+              style={{ marginLeft: 12 }}
+              type="primary"
+              disabled={curStep === totalSteps}
+              onClick={() => {
+                this.nextStep()
+              }}
             >
-                Forward &gt;
+              Forward &gt;
             </Button>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     )
   }
 }
