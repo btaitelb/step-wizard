@@ -1,31 +1,21 @@
 import React, { Component } from "react"
 import { Button } from "antd"
 import "./Step.css"
+import PropTypes from "prop-types"
 
 class Step extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      totalSteps: props.totalSteps,
-      curStep: props.curStep,
-      showConfig: props.showConfig, // TODO: use a function with an error message
-    }
-  }
-
-  updateStep(step) {
-    this.setState({ curStep: step })
-  }
-
   nextStep() {
-    this.updateStep(this.state.curStep + 1)
+    const { curStep, updateStep } = this.props
+    updateStep(curStep + 1)
   }
 
   prevStep() {
-    this.updateStep(this.state.curStep - 1)
+    const { curStep, updateStep } = this.props
+    updateStep(curStep - 1)
   }
 
   render() {
-    const { curStep, totalSteps, showConfig } = this.state
+    const { curStep, totalSteps, showConfig } = this.props
 
     return (
       <div className="component-container">
@@ -44,24 +34,11 @@ class Step extends Component {
           </div>
 
           <div className="buttons-container">
-            <Button
-              type="primary"
-              disabled={curStep === 1}
-              onClick={() => {
-                this.prevStep()
-              }}
-            >
+            <Button className="back" type="primary" disabled={curStep === 1} onClick={() => this.prevStep()}>
               {" "}
               &lt; Back
             </Button>
-            <Button
-              style={{ marginLeft: 12 }}
-              type="primary"
-              disabled={curStep === totalSteps}
-              onClick={() => {
-                this.nextStep()
-              }}
-            >
+            <Button className="forward" style={{ marginLeft: 12 }} type="primary" disabled={curStep === totalSteps} onClick={() => this.nextStep()}>
               Forward &gt;
             </Button>
           </div>
@@ -69,6 +46,13 @@ class Step extends Component {
       </div>
     )
   }
+}
+
+Step.propTypes = {
+  curStep: PropTypes.number.isRequired,
+  totalSteps: PropTypes.number.isRequired,
+  showConfig: PropTypes.func.isRequired,
+  updateStep: PropTypes.func.isRequired,
 }
 
 export default Step

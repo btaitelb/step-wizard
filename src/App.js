@@ -6,9 +6,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalSteps: "",
-      curStep: 1,
-      isShowingConfig: true,
+      totalSteps: 1, // Number
+      curStep: 1, // Number
+      isShowingConfig: true, // Boolean
     }
   }
 
@@ -16,8 +16,12 @@ class App extends Component {
     this.setState({ totalSteps: steps, isShowingConfig: false })
   }
 
+  updateStep(step) {
+    this.setState({ curStep: step })
+  }
+
   showConfig() {
-    this.setState({ totalSteps: "", isShowingConfig: true })
+    this.setState({ totalSteps: 1, isShowingConfig: true })
   }
 
   render() {
@@ -25,7 +29,7 @@ class App extends Component {
     if (isShowingConfig) {
       return <ConfDialog updateTotalSteps={this.updateTotalSteps.bind(this)} />
     } else {
-      return <Step curStep={curStep} totalSteps={totalSteps} showConfig={this.showConfig.bind(this)} />
+      return <Step curStep={curStep} updateStep={this.updateStep.bind(this)} totalSteps={totalSteps} showConfig={this.showConfig.bind(this)} />
     }
   }
 }

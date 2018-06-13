@@ -1,22 +1,22 @@
 import React, { Component } from "react"
 import { Button, Input, notification } from "antd"
 import "./ConfDialog.css"
+import PropTypes from "prop-types"
 
 class ConfDialog extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalSteps: "",
-      updateTotalSteps: props.updateTotalSteps, //TODO: set this to a function with a useful error message
+      stepsInput: "", // String
     }
   }
 
   validate() {
-    const input = parseInt(this.state.totalSteps, 10)
-    if (input && input > 0) {
-      this.state.updateTotalSteps(input)
+    const totalSteps = parseInt(this.state.stepsInput, 10) // Turn stepsInput (string) into totalSteps (number)
+    if (totalSteps && totalSteps > 0) {
+      this.props.updateTotalSteps(totalSteps)
     } else {
-      this.setState({ totalSteps: "" })
+      this.setState({ stepsInput: "" })
       notification.open({
         message: "Invalid Input",
         description: "Step Number must be a non-zero, positive integer.",
@@ -25,7 +25,7 @@ class ConfDialog extends Component {
   }
 
   render() {
-    const { totalSteps } = this.state
+    const { stepsInput } = this.state
 
     return (
       <div className="component-container">
@@ -40,8 +40,8 @@ class ConfDialog extends Component {
               <Input
                 style={{ marginTop: 8 }}
                 placeholder="ie. &quot;1&quot;, &quot;7&quot;, or &quot;22&quot;"
-                value={totalSteps}
-                onChange={(e) => this.setState({ totalSteps: e.target.value })}
+                value={stepsInput}
+                onChange={(e) => this.setState({ stepsInput: e.target.value })}
               />
               <Button type="primary" className="form-submit" onClick={() => this.validate()}>
                 Launch
@@ -52,6 +52,10 @@ class ConfDialog extends Component {
       </div>
     )
   }
+}
+
+ConfDialog.propTypes = {
+  updateTotalSteps: PropTypes.func.isRequired,
 }
 
 export default ConfDialog
