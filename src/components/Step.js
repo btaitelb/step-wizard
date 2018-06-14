@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Button } from "antd"
-import "./Step.css"
+import "../styles/Step.css"
 import PropTypes from "prop-types"
 
 class Step extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Button, Input, notification } from "antd"
-import "./ConfDialog.css"
+import "../styles/ConfDialog.css"
 import PropTypes from "prop-types"
 
 class ConfDialog extends Component {
@@ -36,14 +36,16 @@ class ConfDialog extends Component {
             <div className="form-title">Configure the Setup Wizard</div>
             <p className="form-instruction">Please enter the number of steps you would like this wizard to have.</p>
             <div style={{ marginTop: 140 }}>
-              <div>Step Number</div>
+              <div>Total Steps</div>
               <Input
                 style={{ marginTop: 8 }}
                 placeholder="ie. &quot;1&quot;, &quot;7&quot;, or &quot;22&quot;"
                 value={stepsInput}
                 onChange={(e) => this.setState({ stepsInput: e.target.value })}
+                onKeyPress={(e) => { if (e.key === "Enter") { this.validate() }}}
               />
-              <Button type="primary" className="form-submit" onClick={() => this.validate()}>
+              <Button type="primary" className="form-submit"
+                      onBlur={() => this.validate()}>
                 Launch
               </Button>
             </div>
